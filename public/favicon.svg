@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Khidmat">
+  <rect width="32" height="32" rx="9" fill="#14765a" />
+  <g fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M8.2 16.4 16 9.6l7.8 6.8" />
+    <path d="M10 19.2c0 3.1 2.7 5.1 6 5.1s6-2 6-5.1" />
+  </g>
+  <circle cx="16" cy="22.2" r="1.5" fill="#f1b968" />
+</svg>
