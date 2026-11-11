@@ -40,7 +40,7 @@ export default function ServiceRow({ service, onProvider, onBook, index = 0 }: P
         </div>
       </div>
 
-      <div className="flex items-center justify-between gap-4 border-t border-line pt-4 sm:col-span-2 sm:border-0 sm:pt-0 lg:justify-end lg:gap-5 lg:border-l lg:pl-6">
+      <div className="flex items-center justify-between gap-4 border-t border-line pt-4 sm:col-span-2 sm:border-0 sm:pt-0 lg:col-span-1 lg:justify-end lg:gap-5 lg:border-l lg:pl-6">
         <p className="sm:text-right">
           <span className="block font-display text-lg font-bold leading-none text-ink">AFN {service.price.toLocaleString()}</span>
           <span className="mt-1 block text-[.7rem] uppercase tracking-[.12em] text-ink-faint">{service.unit}</span>
