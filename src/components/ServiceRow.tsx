@@ -1,4 +1,5 @@
-import { ArrowRight, BadgeCheck, Clock3, MapPin } from 'lucide-react';
+import { useState } from 'react';
+import { ArrowRight, BadgeCheck, Clock3, Heart, MapPin } from 'lucide-react';
 import type { Service } from '@/data/catalog';
 import Rating from '@/components/Rating';
 import { useStagger } from '@/lib/motion';
@@ -10,6 +11,7 @@ type Props = { service: Service; onProvider: (service: Service) => void; onBook:
  * proof, price and action on one line, and the whole row is tappable.
  */
 export default function ServiceRow({ service, onProvider, onBook, index = 0 }: Props) {
+  const [loved, setLoved] = useState(false);
   const delay = useStagger(index, 55);
 
   return (
@@ -40,18 +42,29 @@ export default function ServiceRow({ service, onProvider, onBook, index = 0 }: P
         </div>
       </div>
 
-      <div className="flex items-center justify-between gap-4 border-t border-line pt-4 sm:col-span-2 sm:border-0 sm:pt-0 lg:col-span-1 lg:justify-end lg:gap-5 lg:self-end lg:border-l lg:pl-6">
-        <p className="sm:text-right">
-          <span className="block font-display text-lg font-bold leading-none text-ink">AFN {service.price.toLocaleString()}</span>
-          <span className="mt-1 block text-[.7rem] uppercase tracking-[.12em] text-ink-faint">{service.unit}</span>
-        </p>
+      <div className="flex items-center justify-between gap-4 border-t border-line pt-4 sm:col-span-2 sm:border-0 sm:pt-0 lg:col-span-1 lg:flex-col lg:items-end lg:justify-between lg:gap-3 lg:self-stretch lg:border-l lg:pl-6">
         <button
           type="button"
-          onClick={() => onBook(service)}
-          className="pill inline-flex items-center gap-1.5 bg-brand-600 px-4 py-2.5 text-sm font-bold text-white shadow-[0_10px_22px_-12px_rgba(18,105,79,.8)] hover:bg-brand-700"
+          onClick={() => setLoved((current) => !current)}
+          aria-pressed={loved}
+          aria-label={loved ? `Remove ${service.title} from favourites` : `Save ${service.title} to favourites`}
+          className={`hidden h-9 w-9 place-items-center rounded-full border transition-colors duration-300 lg:grid ${loved ? 'border-love/40 bg-love/10 text-love' : 'border-line bg-white text-ink-muted hover:border-love/40 hover:text-love'}`}
         >
-          Request quote <ArrowRight size={15} data-arrow className="transition-transform duration-500 group-hover:translate-x-1" />
+          <Heart size={15} fill={loved ? 'currentColor' : 'none'} />
         </button>
+        <div className="flex w-full items-center justify-between gap-4 sm:gap-5 lg:w-auto lg:justify-end">
+          <p className="sm:text-right">
+            <span className="block font-display text-lg font-bold leading-none text-ink">AFN {service.price.toLocaleString()}</span>
+            <span className="mt-1 block text-[.7rem] uppercase tracking-[.12em] text-ink-faint">{service.unit}</span>
+          </p>
+          <button
+            type="button"
+            onClick={() => onBook(service)}
+            className="pill inline-flex items-center gap-1.5 bg-brand-600 px-4 py-2.5 text-sm font-bold text-white shadow-[0_10px_22px_-12px_rgba(18,105,79,.8)] hover:bg-brand-700"
+          >
+            Request quote <ArrowRight size={15} data-arrow className="transition-transform duration-500 group-hover:translate-x-1" />
+          </button>
+        </div>
       </div>
     </article>
   );
