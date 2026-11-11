@@ -2,8 +2,8 @@ import { useEffect, useRef } from 'react';
 import { useFinePointer, usePrefersReducedMotion } from '@/lib/motion';
 
 /**
- * Desktop-only cursor: an exact dot plus a ring that trails it with easing,
- * reacts to what is underneath, and leans toward magnetic targets.
+ * Desktop-only cursor: an exact dot plus a ring that trails it with easing
+ * and reacts to what is underneath.
  * Touch, pen, and reduced-motion users keep their native cursor.
  */
 export default function CustomCursor() {
@@ -24,7 +24,6 @@ export default function CustomCursor() {
 
     const pointer = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
     const trail = { x: pointer.x, y: pointer.y };
-    const magnet = { x: 0, y: 0 };
     let mode = 'default';
     let pressed = false;
     let shown = false;
@@ -59,16 +58,6 @@ export default function CustomCursor() {
         mode = next;
         ring.dataset.mode = mode;
       }
-
-      const host = (event.target as HTMLElement | null)?.closest<HTMLElement>('[data-magnetic]');
-      if (host) {
-        const box = host.getBoundingClientRect();
-        magnet.x = (pointer.x - (box.left + box.width / 2)) * 0.2;
-        magnet.y = (pointer.y - (box.top + box.height / 2)) * 0.2;
-      } else {
-        magnet.x *= 0.55;
-        magnet.y *= 0.55;
-      }
     };
 
     const onOut = (event: MouseEvent) => { if (!event.relatedTarget) show(false); };
@@ -85,8 +74,8 @@ export default function CustomCursor() {
     };
 
     const tick = () => {
-      trail.x += (pointer.x + magnet.x - trail.x) * 0.17;
-      trail.y += (pointer.y + magnet.y - trail.y) * 0.17;
+      trail.x += (pointer.x - trail.x) * 0.17;
+      trail.y += (pointer.y - trail.y) * 0.17;
       dot.style.transform = `translate3d(${pointer.x}px, ${pointer.y}px, 0) translate(-50%, -50%)`;
       ring.style.transform = `translate3d(${trail.x}px, ${trail.y}px, 0) translate(-50%, -50%) scale(${pressed ? 0.82 : 1})`;
       frame = requestAnimationFrame(tick);

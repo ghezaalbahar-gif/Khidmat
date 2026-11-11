@@ -13,8 +13,8 @@ export default function ServiceRow({ service, onProvider, onBook, index = 0 }: P
   const delay = useStagger(index, 55);
 
   return (
-    <article data-reveal style={delay} className="listing card group grid gap-5 p-4 sm:grid-cols-[132px_1fr] sm:p-5 lg:grid-cols-[148px_1fr_auto] lg:items-center">
-      <button type="button" onClick={() => onProvider(service)} className="listing-media relative h-32 overflow-hidden rounded-2xl sm:h-[104px]" aria-label={`View ${service.provider}'s profile`}>
+    <article data-reveal style={delay} className="listing card group grid gap-5 p-4 sm:grid-cols-[160px_1fr] sm:p-5 lg:grid-cols-[176px_1fr_auto] lg:items-center">
+      <button type="button" onClick={() => onProvider(service)} className="listing-media relative h-40 overflow-hidden rounded-2xl sm:h-[128px] lg:h-[144px]" aria-label={`View ${service.provider}'s profile`}>
         <img src={service.image} alt="" loading="lazy" className="h-full w-full object-cover" />
         <span className="absolute inset-0 bg-ink-deep/0 transition-colors duration-500 group-hover:bg-ink-deep/10" />
       </button>
@@ -40,23 +40,18 @@ export default function ServiceRow({ service, onProvider, onBook, index = 0 }: P
         </div>
       </div>
 
-      <div className="flex items-center justify-between gap-4 border-t border-line pt-4 sm:col-span-2 sm:border-0 sm:pt-0 lg:flex-col lg:items-end lg:border-l lg:pl-6 lg:pt-0">
-        <p className="text-right">
+      <div className="flex items-center justify-between gap-4 border-t border-line pt-4 sm:col-span-2 sm:border-0 sm:pt-0 lg:justify-end lg:gap-5 lg:border-l lg:pl-6">
+        <p className="sm:text-right">
           <span className="block font-display text-lg font-bold leading-none text-ink">AFN {service.price.toLocaleString()}</span>
           <span className="mt-1 block text-[.7rem] uppercase tracking-[.12em] text-ink-faint">{service.unit}</span>
         </p>
-        <div className="flex items-center gap-2">
-          <button
-            type="button"
-            onClick={() => onBook(service)}
-            className="pill inline-flex items-center gap-1.5 bg-brand-600 px-4 py-2.5 text-sm font-bold text-white shadow-[0_10px_22px_-12px_rgba(18,105,79,.8)] hover:bg-brand-700"
-          >
-            Request quote <ArrowRight size={15} data-arrow className="transition-transform duration-500 group-hover:translate-x-1" />
-          </button>
-          <button type="button" onClick={() => onProvider(service)} className="listing-arrow hidden text-brand-600 lg:inline-flex" aria-label={`Open ${service.provider} profile`}>
-            <ArrowRight size={18} />
-          </button>
-        </div>
+        <button
+          type="button"
+          onClick={() => onBook(service)}
+          className="pill inline-flex items-center gap-1.5 bg-brand-600 px-4 py-2.5 text-sm font-bold text-white shadow-[0_10px_22px_-12px_rgba(18,105,79,.8)] hover:bg-brand-700"
+        >
+          Request quote <ArrowRight size={15} data-arrow className="transition-transform duration-500 group-hover:translate-x-1" />
+        </button>
       </div>
     </article>
   );

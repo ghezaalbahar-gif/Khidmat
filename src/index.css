@@ -328,8 +328,6 @@ html.cursor-custom [contenteditable] { cursor: auto !important; }
   .listing:hover::before { transform: scaleY(1); }
   .listing-media img { transition: transform 1s cubic-bezier(.22, 1, .36, 1); }
   .listing:hover .listing-media img { transform: scale(1.06); }
-  .listing-arrow { transition: transform .4s cubic-bezier(.22, 1, .36, 1), opacity .3s ease; opacity: .55; }
-  .listing:hover .listing-arrow { transform: translateX(5px); opacity: 1; }
 
   /* Category tile: icon tips, colour wash rises, arrow runs, border warms. */
   .tile {
@@ -383,8 +381,8 @@ html.cursor-custom [contenteditable] { cursor: auto !important; }
     transition: transform .5s cubic-bezier(.22, 1, .36, 1), background-color .4s ease, border-color .4s ease;
   }
   .step:hover { transform: translateX(4px); border-color: #bcdcc8; background: #fbfdfb; }
-  .step-numeral { transition: transform .5s cubic-bezier(.34, 1.56, .64, 1), color .4s ease; }
-  .step:hover .step-numeral { transform: translateY(-2px) scale(1.08); color: #c07f2e; }
+  .step-numeral { transition: color .4s ease; }
+  .step:hover .step-numeral { color: rgba(18, 105, 79, .16); }
 
   .quote-card { transition: transform .5s cubic-bezier(.22, 1, .36, 1), box-shadow .5s ease, border-color .4s ease; }
   .quote-card:hover { transform: translateY(-5px); border-color: #c6ddcc; box-shadow: 0 24px 48px -28px rgba(23, 60, 54, .34); }

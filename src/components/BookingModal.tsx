@@ -76,7 +76,7 @@ export default function BookingModal({ service, user, onClose, onSuccess, onSign
         <div className="relative">
           <img src={service.image} alt="" className="h-28 w-full object-cover sm:h-32" />
           <div className="absolute inset-0 bg-gradient-to-t from-ink-deep/80 via-ink-deep/25 to-transparent" />
-          <button type="button" onClick={onClose} aria-label="Close booking form" className="absolute right-4 top-4 grid h-9 w-9 place-items-center rounded-full bg-white/90 text-ink-soft backdrop-blur transition hover:bg-white hover:text-danger">
+          <button type="button" onClick={onClose} aria-label="Close booking form" className="absolute right-4 top-4 z-10 grid h-9 w-9 place-items-center rounded-full bg-white/90 text-ink-soft backdrop-blur transition hover:bg-white hover:text-danger">
             <X size={18} />
           </button>
           <div className="absolute bottom-4 left-5 right-5 text-white">

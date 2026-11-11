@@ -90,12 +90,10 @@ export default function HomePage({ onSearch, onBrowse, onCategory, onProvider, o
           </div>
         </div>
 
-        <div className="mt-10 grid gap-5 lg:grid-cols-[1.15fr_1fr]">
-          <div className="lg:row-span-2">
-            <ServiceCard service={featured} onProvider={onProvider} onBook={onBook} />
-          </div>
-          {rest.slice(0, 2).map((service, index) => (
-            <ServiceCard key={service.id} service={service} index={index} onProvider={onProvider} onBook={onBook} />
+        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-[1.15fr_1fr]">
+          <ServiceCard service={featured} onProvider={onProvider} onBook={onBook} />
+          {rest.slice(0, 3).map((service, index) => (
+            <ServiceCard key={service.id} service={service} index={index + 1} onProvider={onProvider} onBook={onBook} />
           ))}
         </div>
 
